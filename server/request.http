@@ -1,0 +1,54 @@
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "jordan123",
+    "password": "jordan12"
+}
+###
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "jordan123",
+    "password": "jordan12"
+    
+}
+
+###
+
+POST http://localhost:5000/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGU3MjMyNjhiNThmYjJhMThiNzFlZjIiLCJpYXQiOjE2MjU3NjE0MTh9.prRE5rq9Rb_iaON0_agicpX7UWuuQ2t4k2_04dT0W4Y
+
+{ 
+    "title": "ccxcz dd",
+    "description": "fullstack dev",
+    "url": "www.youtube.com",
+    "status": "OPEN"    
+}
+
+###
+
+GET http://localhost:5000/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGU3MjMyNjhiNThmYjJhMThiNzFlZjIiLCJpYXQiOjE2MjU3NjE0MTh9.prRE5rq9Rb_iaON0_agicpX7UWuuQ2t4k2_04dT0W4Y
+
+
+###
+PUT http://localhost:5000/api/posts/60e7233c8b58fb2a18b71ef4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGU3MjMyNjhiNThmYjJhMThiNzFlZjIiLCJpYXQiOjE2MjU3NjE0MTh9.prRE5rq9Rb_iaON0_agicpX7UWuuQ2t4k2_04dT0W4Y
+
+{ 
+    "title": "ccxcz dd",
+    "description": "fullstack dev",
+    "url": "www.facebook.com",
+    "status": "OPEN"    
+}
+
+###
+DELETE http://localhost:5000/api/posts/60e7233c8b58fb2a18b71ef4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGU3MjMyNjhiNThmYjJhMThiNzFlZjIiLCJpYXQiOjE2MjU3NjE0MTh9.prRE5rq9Rb_iaON0_agicpX7UWuuQ2t4k2_04dT0W4Y
