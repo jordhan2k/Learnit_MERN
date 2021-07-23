@@ -5,7 +5,36 @@ const jwt = require('jsonwebtoken');
 
 // Import user model 
 const User = require('../models/User');
+const verifyToken = require('../middleware/authentication');
 
+
+/**
+ * @route POST api/auth/
+ * @desc Check authentication status
+ * @access Public
+ */
+router.get('/', verifyToken, async (req, res) => {
+    try {
+        const user = await User.findById(req.userId).select('-password');
+        if (!user) {
+            return res.status(400).json({
+                success: false,
+                message: "User not found"
+            });
+        }
+
+        res.json({
+            success: true,
+            user
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error"
+        });
+    }
+});
 
 /**
  * @route POST api/auth/register
@@ -33,7 +62,7 @@ router.post('/register', async (req, res) => {
         if (user) {
             return res.status(400).json({
                 success: false,
-                message: "username has already been taken"
+                message: "Username has already been taken"
             });
         }
 
