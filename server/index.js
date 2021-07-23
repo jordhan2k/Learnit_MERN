@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const authRouter = require('./routes/authentication');
 const postRouter = require('./routes/post');
 
@@ -25,7 +26,7 @@ connectDB();
 const app = express();
 // enable server to read json objects
 app.use(express.json());
-
+app.use(cors());
 
 
 // Authentication routes
