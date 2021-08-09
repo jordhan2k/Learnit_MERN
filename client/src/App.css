@@ -8,7 +8,11 @@
   --gradient-2: #FFCAC9;
   --gradient-3: #59a9e7;
   --gradient-4: #abf8db;
+  --success: #60d394;
+  --warning: #ffc532;
+  --danger: #dd645c;
 }
+
 
 * {
   margin: 0;
@@ -29,6 +33,10 @@
   background-size: cover;
   /* filter: blur(10px); */
   z-index: 0;
+}
+
+.spin {
+  background: none;
 }
 
 .form-container {
@@ -118,6 +126,23 @@
   backdrop-filter: blur(40px);
   opacity: 0;
   animation: fadeUp .5s forwards;
+  z-index: 10;
+}
+
+.warning.post-toast {
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
+  bottom: 45px;
+  right: 100px;
+}
+
+.post-toast.success {
+  background-color: var(--success);
+}
+
+.post-toast.fail {
+  background-color: var(--danger);
 }
 
 .auth-input:focus {
@@ -200,15 +225,20 @@
 /* APP CSS */
 
 .app-container {
+  /*  */
+  position: fixed;
+  /*  */
   display: flex;
   height: 100%;
   width: 100%;
   box-sizing: border-box;
   background: linear-gradient(217deg, #737DFE17, #FFCAC9 80%), linear-gradient(127deg, #59a9e7, #abf8db 60%);
+  /* background-attachment: fixed; */
+  background-position: center;
 }
 
+
 .navbar {
- 
   font-size: 18px;
   position: absolute;
   font-family: var(--main-body-font);
@@ -223,27 +253,157 @@
   box-shadow: 0 0 5px 10px rgba(58, 58, 58, 0.025);
 }
 
+/* TASKS DIVS */
+
 .task-container {
   position: absolute;
+  flex-direction: row;
   box-sizing: border-box;
   width: 100%;
-
   margin-top: 50px;
-
   padding: 20px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: space-around;
+  /* justify-content: space-evenly; */
+  justify-content: stretch;
 }
 
 .single-task-div {
-  text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  /* text-align: center; */
   flex-basis: 30%;
-  min-width: 220px;
-  margin-bottom: 30px;
+  min-width: 300px;
   transition: transform 1s;
+  backdrop-filter: blur(50px);
+  margin: 20px 20px;
+  box-shadow: 2px 2px 5px 2px rgba(200, 200, 200, 0.8);
 }
+
+.single-task-div>div {
+  font-family: var(--main-body-font);
+}
+
+.post-title {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--main-font-color);
+  text-transform: capitalize;
+}
+
+.title-button {
+  position: relative;
+  float: right;
+}
+
+.title-button a, span {
+  margin-left: 10px;
+}
+
+.title-button a:visited {
+  color: initial;
+}
+
+.status {
+  font-size: 12px;
+  display: inline-block;
+  border-radius: 15px;
+  padding: 2px 4px;
+  margin: 10px 0;
+  color: white;
+  font-weight: bold;
+}
+
+.status.open {
+  background-color: var(--danger);
+}
+
+.status.in-progress {
+  background-color: var(--warning);
+}
+
+.status.completed {
+  background-color: var(--success);
+}
+
+.post-desc {
+  font-size: 12px;
+  color: darkgray;
+  font-style: italic;
+}
+
+/* modal */
+
+.post-modal {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(88, 88, 88, 0.2);
+  backdrop-filter: blur(10px);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  font-family: var(--main-body-font);
+  font-size: 14px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  display: inline-block;
+  color: white;
+  font-weight: 600;
+  margin: 0 20px;
+}
+
+.button.cancel {
+  background-color: #ee6055;
+}
+
+.button.create {
+  background-color: #52bb81;
+}
+
+.modal-form-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: var(--main-body-font);
+  opacity: 0;
+  opacity: 0;
+  /* animation: fadeDown 1s forwards; */
+  animation: zoomOut 1s forwards;
+}
+
+.input-field {
+  font-family: var(--main-body-font);
+  width: 400px;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  border: solid 1px #caffbf;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.input-field::placeholder {
+  font-family: var(--main-body-font);
+}
+
+.input-field:focus {
+  box-shadow: 0 0 10px 2px #adff9d;
+  outline: none;
+}
+
+/* ADD BUTTONS */
 
 .add-button {
   position: absolute;
@@ -294,6 +454,10 @@
   .add-button {
     bottom: 15px;
     right: 15px;
+  }
+  .warning.post-toast {
+    bottom: 10px;
+    right: 65px;
   }
 }
 
@@ -359,10 +523,20 @@
 
 @keyframes fadeDown {
   0% {
-    transform: translateY(-1rem);
+    transform: translateY(-10rem);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-2rem);
+  }
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(-2rem);
   }
 }
