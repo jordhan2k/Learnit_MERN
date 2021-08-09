@@ -2,7 +2,7 @@ import React from 'react'
 
 const Spinner = () => {
     return (
-        <div className="container">
+        <div className="container spin">
             <div className="no-freeze-spinner">
                 <div id="no-freeze-spinner">
                     <div>
