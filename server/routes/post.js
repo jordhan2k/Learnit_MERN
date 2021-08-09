@@ -4,7 +4,6 @@ const verifyToken = require('../middleware/authentication');
 const Post = require('../models/Post');
 const { route } = require('./authentication');
 
-
 /**
  * C
  * @route POST /api/posts
@@ -76,7 +75,7 @@ router.get('/', verifyToken, async (req, res) => {
 
 /**
  * U
- * @route PUT /api/post/:id
+ * @route PUT /api/posts/:id
  * @desc Update a post
  * @access Private
  */
@@ -138,9 +137,7 @@ router.put('/:id', verifyToken, async (req, res) => {
  */
  router.delete('/:id', verifyToken, async (req, res) => {
    
-
     try {
-
         const postDeleteCondition = {
             _id: req.params.id,
             user: req.userId
@@ -170,8 +167,6 @@ router.put('/:id', verifyToken, async (req, res) => {
         });
     }
 });
-
-
 
 
 module.exports = router;
