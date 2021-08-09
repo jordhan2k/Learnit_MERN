@@ -5,6 +5,7 @@ import { PostContext } from '../../context/PostContext';
 import Spinner from '../../utils/Spinner';
 import SinglePost from '../posts/SinglePost';
 import PostCreateModal from '../posts/PostCreateModal';
+import PostEditModal from '../posts/PostEditModal';
 
 
 
@@ -12,6 +13,7 @@ const Dashboard = () => {
     const { logoutUser, authState } = useContext(AuthContext);
     const { getPosts,
         postState: {
+            post,
             posts,
             postLoading },
         showCreatePostModal,
@@ -32,7 +34,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         if (show) {
-            setTimeout(()=> setShowToast({
+            setTimeout(() => setShowToast({
                 show: false,
                 message: '',
                 type: null
@@ -49,28 +51,17 @@ const Dashboard = () => {
             body = (<SinglePost post={{ 'title': 'No post found' }} />);
         } else {
             body = posts.map(item => (
-
                 <SinglePost key={item._id} post={item} />
-
-
             ));
-
-
-
-
-
-
-
-
         }
     }
-
-
 
     return (
         <>
             <PostCreateModal />
+            {post && <PostEditModal />}
             {show && <div className={`warning post-toast ${type}`}>{message}</div>}
+            <div className="bg"></div>
             <div className="app-container">
                 {/* <div className="background"></div> */}
                 <div className="navbar">

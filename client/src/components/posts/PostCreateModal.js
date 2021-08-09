@@ -2,12 +2,12 @@ import { useContext, useState } from 'react';
 import { PostContext } from '../../context/PostContext';
 
 const PostCreateModal = () => {
-    const { 
-        showCreatePostModal, 
-        setShowCreatePostModal, 
+    const {
+        showCreatePostModal,
+        setShowCreatePostModal,
         addPost,
         setShowToast
-     } = useContext(PostContext);
+    } = useContext(PostContext);
     const [postForm, setPostForm] = useState({
         title: '',
         url: '',
@@ -35,15 +35,8 @@ const PostCreateModal = () => {
     const onFormSubmit = async event => {
         console.log("create button clicked");
         event.preventDefault();
-        
 
         const { success, message, post } = await addPost(postForm);
-
-        // window.alert(`${success} - ${message} - ${post}` );
-
-        
-     
-        
 
         closeModal();
 
@@ -52,14 +45,7 @@ const PostCreateModal = () => {
             message: message,
             type: success ? 'success' : 'fail'
         });
-        // setTimeout(() => setShowToast({
-        //     show: false,
-        //     message: '',
-        //     type: null
-        // }));
     }
-
-
 
     return showCreatePostModal && (<div className="post-modal" >
         <form className="modal-form-container" onSubmit={onFormSubmit}>

@@ -13,7 +13,6 @@
   --danger: #dd645c;
 }
 
-
 * {
   margin: 0;
   padding: 0;
@@ -130,6 +129,7 @@
 }
 
 .warning.post-toast {
+  position: fixed;
   color: white;
   font-weight: 600;
   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
@@ -225,22 +225,24 @@
 /* APP CSS */
 
 .app-container {
-  /*  */
-  position: fixed;
-  /*  */
   display: flex;
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-  background: linear-gradient(217deg, #737DFE17, #FFCAC9 80%), linear-gradient(127deg, #59a9e7, #abf8db 60%);
-  /* background-attachment: fixed; */
-  background-position: center;
 }
 
+.bg {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(217deg, #737DFE17, #FFCAC9 80%), linear-gradient(127deg, #59a9e7, #abf8db 60%);
+  box-sizing: border-box;
+  z-index: -5;
+}
 
 .navbar {
   font-size: 18px;
-  position: absolute;
+  position: fixed;
   font-family: var(--main-body-font);
   display: flex;
   justify-content: space-between;
@@ -250,7 +252,8 @@
   width: 100%;
   padding: 10px 20px;
   background-color: white;
-  box-shadow: 0 0 5px 10px rgba(58, 58, 58, 0.025);
+  box-shadow: 0 0 10px 10px rgba(58, 58, 58, 0.1);
+  z-index: 20;
 }
 
 /* TASKS DIVS */
@@ -278,7 +281,7 @@
   min-width: 300px;
   transition: transform 1s;
   backdrop-filter: blur(50px);
-  margin: 20px 20px;
+  margin: 20px 15px;
   box-shadow: 2px 2px 5px 2px rgba(200, 200, 200, 0.8);
 }
 
@@ -337,7 +340,7 @@
 /* modal */
 
 .post-modal {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
   background-color: rgba(88, 88, 88, 0.2);
@@ -358,6 +361,38 @@
   color: white;
   font-weight: 600;
   margin: 0 20px;
+  cursor: pointer;
+}
+
+.input-field.status-div {
+  border: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.status-option {
+  font-size: 14px;
+  padding: 5px;
+  background-color: rgba(200, 200, 200, 0.8);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.status-option.active {
+  color: white;
+  font-weight: 600;
+}
+
+.status-option.open {
+  background-color: var(--danger);
+}
+
+.status-option.in-progress {
+  background-color: var(--warning);
+}
+
+.status-option.completed {
+  background-color: var(--success);
 }
 
 .button.cancel {
@@ -387,7 +422,8 @@
 .input-field {
   font-family: var(--main-body-font);
   width: 400px;
-  margin: 20px;
+  margin: 10px 0;
+
   padding: 10px;
   border-radius: 10px;
   border: solid 1px #caffbf;
@@ -406,7 +442,7 @@
 /* ADD BUTTONS */
 
 .add-button {
-  position: absolute;
+  position: fixed;
   bottom: 50px;
   right: 50px;
   display: flex;
