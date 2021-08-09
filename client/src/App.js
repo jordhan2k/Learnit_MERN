@@ -5,10 +5,12 @@ import Auth from './components/views/Auth';
 import AuthContextProvider from './context/AuthContext';
 import Dashboard from './components/views/Dashboard';
 import ProtectedRoute from './components/routing/ProtectedRoute';
+import PostContextProvider from './context/PostContext';
 
 function App() {
   return (
     <AuthContextProvider>
+      <PostContextProvider>
       <Router>
         <Switch>
           <Route exact
@@ -34,6 +36,7 @@ function App() {
 
         </Switch>
       </Router>
+      </PostContextProvider>
     </AuthContextProvider>
   );
 }
