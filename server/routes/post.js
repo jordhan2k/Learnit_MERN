@@ -5,10 +5,6 @@ const Post = require('../models/Post');
 const { route } = require('./authentication');
 
 
-
-
-
-
 /**
  * C
  * @route POST /api/posts
@@ -38,7 +34,7 @@ router.post('/', verifyToken, async (req, res) => {
 
         await newPost.save();
 
-        res.json({
+        return res.json({
             success: true,
             message: "Hooray! Let's learn something new!",
             post: newPost
@@ -65,7 +61,7 @@ router.get('/', verifyToken, async (req, res) => {
     try {
         const posts = await Post.find({ user: req.userId })
             .populate('user', 'username');
-        res.json({
+        return res.json({
             success: true,
             posts
         });

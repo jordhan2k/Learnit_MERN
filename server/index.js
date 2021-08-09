@@ -5,7 +5,6 @@ const cors = require('cors');
 const authRouter = require('./routes/authentication');
 const postRouter = require('./routes/post');
 
-
 const connectDB = async () => {
     try {
         await mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@mern-learnit.lvaty.mongodb.net/mern-learnit?retryWrites=true&w=majority`, {
@@ -21,7 +20,6 @@ const connectDB = async () => {
     }
 }
 connectDB();
-
 
 const app = express();
 // enable server to read json objects

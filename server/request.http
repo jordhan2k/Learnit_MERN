@@ -20,7 +20,7 @@ Content-Type: application/json
 
 POST http://localhost:5000/api/posts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGU3MjMyNjhiNThmYjJhMThiNzFlZjIiLCJpYXQiOjE2MjU3NjE0MTh9.prRE5rq9Rb_iaON0_agicpX7UWuuQ2t4k2_04dT0W4Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGU3MjMyNjhiNThmYjJhMThiNzFlZjIiLCJpYXQiOjE2Mjg0MzQ4MDB9.8O6iPwxy2hh0M5sWgNGg0nHrCylUsi9I6megTD9lek0
 
 { 
     "title": "ccxcz dd",
